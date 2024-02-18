@@ -8,6 +8,7 @@ let operator;
 let secondNum;
 
 const operate = (num1, operator, num2) => operator(num1, num2);
+console.log(operate(12, add, 4));
 
 const btnOne = document.querySelector('#one');
 const btnTwo = document.querySelector('#two');
@@ -34,12 +35,10 @@ btnOne.addEventListener('click', () => {
 
 btnTwo.addEventListener('click', () => {
   displayValue.textContent += '2';
-  num1 = displayValue.textContent;
 });
 
 btnThree.addEventListener('click', () => {
   displayValue.textContent += '3';
-  num1 = displayValue.textContent;
 });
 
 btnFour.addEventListener('click', () => {
@@ -72,32 +71,45 @@ btnZero.addEventListener('click', () => {
 
 btnClear.addEventListener('click', () => {
   displayValue.textContent = '';
+  firstNum = '';
+  operator = '';
+  secondNum = '';
 })
 
 btnAdd.addEventListener('click', () => {
+  firstNum = Number(displayValue.textContent);
   displayValue.textContent += ' +'
   processValue.textContent = displayValue.textContent;
   displayValue.textContent = '';
-  operator = 'add';
+  operator = add;
 });
 
 btnSubtract.addEventListener('click', () => {
+  firstNum = Number(displayValue.textContent);
   displayValue.textContent += ' -'
   processValue.textContent = displayValue.textContent;
   displayValue.textContent = '';
-  operator = 'subtract';
+  operator = subtract;
 });
 
 btnMultiply.addEventListener('click', () => {
+  firstNum = Number(displayValue.textContent);
   displayValue.textContent += ' *'
   processValue.textContent = displayValue.textContent;
   displayValue.textContent = '';
-  operator = 'multiply';
+  operator = multiply;
 });
 
 btnDivide.addEventListener('click', () => {
+  firstNum = Number(displayValue.textContent);
   displayValue.textContent += ' /'
   processValue.textContent = displayValue.textContent;
   displayValue.textContent = '';
-  operator = 'divide';
+  operator = divide;
+});
+
+btnCalculate.addEventListener('click', () => {
+  secondNum = Number(displayValue.textContent);
+  processValue.textContent = '';
+  displayValue.textContent = `${operate(firstNum, operator, secondNum)}`;
 });
