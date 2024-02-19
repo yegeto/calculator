@@ -8,7 +8,6 @@ let operator;
 let secondNum;
 
 const operate = (num1, operator, num2) => operator(num1, num2);
-console.log(operate(12, add, 4));
 
 const btnOne = document.querySelector('#one');
 const btnTwo = document.querySelector('#two');
