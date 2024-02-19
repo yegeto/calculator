@@ -25,8 +25,13 @@ const btnMultiply = document.querySelector('#multiplication');
 const btnDivide = document.querySelector('#division');
 const btnCalculate = document.querySelector('#calculation');
 const btnClear = document.querySelector('#clear');
+const btnBackspace = document.querySelector('#backspace');
 const displayValue = document.querySelector('#display');
 const processValue = document.querySelector('#process');
+
+btnBackspace.addEventListener('click', () => {
+  displayValue.textContent = displayValue.textContent.slice(0, -1);
+})
 
 btnOne.addEventListener('click', () => {
   displayValue.textContent += '1';
@@ -70,6 +75,7 @@ btnZero.addEventListener('click', () => {
 
 btnClear.addEventListener('click', () => {
   displayValue.textContent = '';
+  processValue.textContent = '';
   firstNum = '';
   operator = '';
   secondNum = '';
