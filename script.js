@@ -6,6 +6,7 @@ const divide = (num1, num2) => num1 / num2;
 let firstNum;
 let operator;
 let secondNum;
+let calculated = false;
 
 const operate = (num1, operator, num2) => operator(num1, num2);
 
@@ -34,42 +35,131 @@ btnBackspace.addEventListener('click', () => {
 })
 
 btnOne.addEventListener('click', () => {
+  if (calculated) {
+    displayValue.textContent = '';
+    processValue.textContent = '';
+    firstNum = '';
+    operator = '';
+    secondNum = '';  
+    calculated = false;
+  }
   displayValue.textContent += '1';
 });
 
 btnTwo.addEventListener('click', () => {
+  if (calculated) {
+    displayValue.textContent = '';
+    processValue.textContent = '';
+    firstNum = '';
+    operator = '';
+    secondNum = '';  
+    calculated = false;
+  }
+
   displayValue.textContent += '2';
 });
 
 btnThree.addEventListener('click', () => {
+  if (calculated) {
+    displayValue.textContent = '';
+    processValue.textContent = '';
+    firstNum = '';
+    operator = '';
+    secondNum = '';  
+    calculated = false;
+  }
+
   displayValue.textContent += '3';
 });
 
 btnFour.addEventListener('click', () => {
+  if (calculated) {
+    displayValue.textContent = '';
+    processValue.textContent = '';
+    firstNum = '';
+    operator = '';
+    secondNum = '';  
+    calculated = false;
+  }
+
   displayValue.textContent += '4';
 });
 
 btnFive.addEventListener('click', () => {
+  if (calculated) {
+    displayValue.textContent = '';
+    processValue.textContent = '';
+    firstNum = '';
+    operator = '';
+    secondNum = '';  
+    calculated = false;
+  }
+
   displayValue.textContent += '5';
 });
 
 btnSix.addEventListener('click', () => {
+  if (calculated) {
+    displayValue.textContent = '';
+    processValue.textContent = '';
+    firstNum = '';
+    operator = '';
+    secondNum = '';  
+    calculated = false;
+  }
+
   displayValue.textContent += '6';
 });
 
 btnSeven.addEventListener('click', () => {
+  if (calculated) {
+    displayValue.textContent = '';
+    processValue.textContent = '';
+    firstNum = '';
+    operator = '';
+    secondNum = '';  
+    calculated = false;
+  }
+
   displayValue.textContent += '7';
 });
 
 btnEight.addEventListener('click', () => {
+  if (calculated) {
+    displayValue.textContent = '';
+    processValue.textContent = '';
+    firstNum = '';
+    operator = '';
+    secondNum = '';  
+    calculated = false;
+  }
+
   displayValue.textContent += '8';
 });
 
 btnNine.addEventListener('click', () => {
+  if (calculated) {
+    displayValue.textContent = '';
+    processValue.textContent = '';
+    firstNum = '';
+    operator = '';
+    secondNum = '';  
+    calculated = false;
+  }
+
   displayValue.textContent += '9';
 });
 
 btnZero.addEventListener('click', () => {
+  if (calculated) {
+    displayValue.textContent = '';
+    processValue.textContent = '';
+    firstNum = '';
+    operator = '';
+    secondNum = '';  
+    calculated = false;
+  }
+
   displayValue.textContent += '0';
 });
 
@@ -82,6 +172,15 @@ btnClear.addEventListener('click', () => {
 })
 
 btnAdd.addEventListener('click', () => {
+  if (firstNum) {
+    secondNum = Number(displayValue.textContent);
+    processValue.textContent = `${operate(firstNum, operator, secondNum)} +`;
+    displayValue.textContent = '';
+    firstNum = operate(firstNum, operator, secondNum);
+    operator = add;
+    return;
+  }
+
   firstNum = Number(displayValue.textContent);
   displayValue.textContent += ' +'
   processValue.textContent = displayValue.textContent;
@@ -90,6 +189,15 @@ btnAdd.addEventListener('click', () => {
 });
 
 btnSubtract.addEventListener('click', () => {
+  if (firstNum) {
+    secondNum = Number(displayValue.textContent);
+    processValue.textContent = `${operate(firstNum, operator, secondNum)} -`;
+    displayValue.textContent = '';
+    firstNum = operate(firstNum, operator, secondNum);
+    operator = subtract;
+    return;
+  }
+
   firstNum = Number(displayValue.textContent);
   displayValue.textContent += ' -'
   processValue.textContent = displayValue.textContent;
@@ -98,6 +206,15 @@ btnSubtract.addEventListener('click', () => {
 });
 
 btnMultiply.addEventListener('click', () => {
+  if (firstNum) {
+    secondNum = Number(displayValue.textContent);
+    processValue.textContent = `${operate(firstNum, operator, secondNum)} *`;
+    displayValue.textContent = '';
+    firstNum = operate(firstNum, operator, secondNum);
+    operator = multiply;
+    return;
+  }
+
   firstNum = Number(displayValue.textContent);
   displayValue.textContent += ' *'
   processValue.textContent = displayValue.textContent;
@@ -106,6 +223,15 @@ btnMultiply.addEventListener('click', () => {
 });
 
 btnDivide.addEventListener('click', () => {
+  if (firstNum) {
+    secondNum = Number(displayValue.textContent);
+    processValue.textContent = `${operate(firstNum, operator, secondNum)} /`;
+    displayValue.textContent = '';
+    firstNum = operate(firstNum, operator, secondNum);
+    operator = divide;
+    return;
+  }
+
   firstNum = Number(displayValue.textContent);
   displayValue.textContent += ' /'
   processValue.textContent = displayValue.textContent;
@@ -114,7 +240,16 @@ btnDivide.addEventListener('click', () => {
 });
 
 btnCalculate.addEventListener('click', () => {
+  if (!processValue.textContent) {
+    displayValue.textContent = '';
+    processValue.textContent = '';
+    firstNum = '';
+    operator = '';
+    secondNum = '';  
+    return;
+  }
   secondNum = Number(displayValue.textContent);
   processValue.textContent = '';
   displayValue.textContent = `${operate(firstNum, operator, secondNum)}`;
+  calculated = true;
 });
