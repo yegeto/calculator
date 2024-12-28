@@ -3,9 +3,10 @@ const subtract = (x, y) => x - y;
 const multiply = (x, y) => x * y;
 const divide = (x, y) => x / y;
 
-let operandOne;
-let operandTwo;
-let operator;
+let operandOne = "";
+let operandTwo = "";
+let operator = "";
+let theNumber = "";
 
 const operate = (operator, firstNumber, secondNumber) => {
   switch (operator) {
@@ -29,7 +30,28 @@ buttons.forEach((button) => {
       if (screen.innerText === "0") {
         screen.innerText = "";
       }
-      screen.innerText += button.value;
+      theNumber += button.value;
+      screen.innerText = theNumber;
+    });
+  } else if (button.classList.contains("operator")) {
+    button.addEventListener("click", () => {
+      operandOne = screen.innerText;
+      operator = button.value;
+      theNumber = "";
+    });
+  } else if (button.classList.contains("equals")) {
+    button.addEventListener("click", () => {
+      operandTwo = screen.innerText;
+      screen.innerText = operate(
+        operator,
+        Number(operandOne),
+        Number(operandTwo)
+      );
+    });
+  } else if (button.classList.contains("clear")) {
+    button.addEventListener("click", () => {
+      screen.innerText = "0";
+      theNumber = "";
     });
   }
 });
