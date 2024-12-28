@@ -42,16 +42,23 @@ buttons.forEach((button) => {
   } else if (button.classList.contains("equals")) {
     button.addEventListener("click", () => {
       operandTwo = screen.innerText;
+      if (!operandOne || !operator) {
+        return;
+      }
       screen.innerText = operate(
         operator,
         Number(operandOne),
         Number(operandTwo)
       );
+      operator = "";
     });
   } else if (button.classList.contains("clear")) {
     button.addEventListener("click", () => {
       screen.innerText = "0";
       theNumber = "";
+      operandOne = "";
+      operandTwo = "";
+      operator = "";
     });
   }
 });
