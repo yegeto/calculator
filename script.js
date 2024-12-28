@@ -19,3 +19,17 @@ const operate = (operator, firstNumber, secondNumber) => {
       return divide(firstNumber, secondNumber);
   }
 };
+
+const buttons = document.querySelectorAll("button");
+const screen = document.querySelector(".screen");
+
+buttons.forEach((button) => {
+  if (button.classList.contains("number")) {
+    button.addEventListener("click", () => {
+      if (screen.innerText === "0") {
+        screen.innerText = "";
+      }
+      screen.innerText += button.value;
+    });
+  }
+});
