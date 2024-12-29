@@ -51,6 +51,7 @@ buttons.forEach((button) => {
         Number(operandTwo)
       );
       operator = "";
+      theNumber = "";
     });
   } else if (button.classList.contains("clear")) {
     button.addEventListener("click", () => {
