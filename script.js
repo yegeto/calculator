@@ -83,5 +83,13 @@ buttons.forEach((button) => {
         }
       }
     });
+  } else if (button.classList.contains("backspace")) {
+    button.addEventListener("click", () => {
+      theNumber = theNumber.slice(-0, -1);
+      if (!theNumber) {
+        theNumber = "0";
+      }
+      updateScreen(theNumber);
+    });
   }
 });
