@@ -7,6 +7,7 @@ let operandOne = "";
 let operandTwo = "";
 let operator = "";
 let theNumber = "";
+let hasDecimal = false;
 
 const operate = (operator, firstNumber, secondNumber) => {
   switch (operator) {
@@ -38,6 +39,9 @@ buttons.forEach((button) => {
         updateScreen("");
       }
       theNumber += button.value;
+      if (theNumber === "00") {
+        theNumber = "0";
+      }
       updateScreen(theNumber);
     });
   } else if (button.classList.contains("operator")) {
@@ -45,6 +49,7 @@ buttons.forEach((button) => {
       operandOne = screen.innerText;
       operator = button.value;
       theNumber = "";
+      hasDecimal = false;
     });
   } else if (button.classList.contains("equals")) {
     button.addEventListener("click", () => {
@@ -52,13 +57,10 @@ buttons.forEach((button) => {
       if (!operandOne || !operator) {
         return;
       }
-      screen.innerText = operate(
-        operator,
-        Number(operandOne),
-        Number(operandTwo)
-      );
+      updateScreen(operate(operator, Number(operandOne), Number(operandTwo)));
       operator = "";
       theNumber = "";
+      hasDecimal = false;
     });
   } else if (button.classList.contains("clear")) {
     button.addEventListener("click", () => {
@@ -67,6 +69,19 @@ buttons.forEach((button) => {
       operandOne = "";
       operandTwo = "";
       operator = "";
+      hasDecimal = false;
+    });
+  } else if (button.classList.contains("decimal")) {
+    button.addEventListener("click", () => {
+      if (!hasDecimal) {
+        if (!theNumber) {
+          return;
+        } else {
+          theNumber += button.value;
+          hasDecimal = true;
+          updateScreen(theNumber);
+        }
+      }
     });
   }
 });
