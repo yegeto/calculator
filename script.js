@@ -24,14 +24,21 @@ const operate = (operator, firstNumber, secondNumber) => {
 const buttons = document.querySelectorAll("button");
 const screen = document.querySelector(".screen");
 
+const updateScreen = (newOutput) => {
+  screen.innerText = newOutput;
+  if (screen.innerText.length > 10) {
+    screen.innerText = screen.innerText.substring(0, 10);
+  }
+};
+
 buttons.forEach((button) => {
   if (button.classList.contains("number")) {
     button.addEventListener("click", () => {
       if (screen.innerText === "0") {
-        screen.innerText = "";
+        updateScreen("");
       }
       theNumber += button.value;
-      screen.innerText = theNumber;
+      updateScreen(theNumber);
     });
   } else if (button.classList.contains("operator")) {
     button.addEventListener("click", () => {
@@ -55,7 +62,7 @@ buttons.forEach((button) => {
     });
   } else if (button.classList.contains("clear")) {
     button.addEventListener("click", () => {
-      screen.innerText = "0";
+      updateScreen("0");
       theNumber = "";
       operandOne = "";
       operandTwo = "";
